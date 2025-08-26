@@ -44,6 +44,7 @@
     "README.md"
   ],
   "dependencies": {
+    "@aiofix/infrastructure-logging": "workspace:*",
     "@nestjs/common": "^11.1.6"
   }
 }

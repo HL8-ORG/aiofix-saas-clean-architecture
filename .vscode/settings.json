@@ -18,9 +18,7 @@
   "files.autoSave": "onFocusChange",
   "editor.bracketPairColorization.enabled": true,
   "editor.renderWhitespace": "boundary",
-  "editor.rulers": [
-    80
-  ],
+  "editor.rulers": [80],
   "editor.wordWrap": "bounded",
   "editor.wordWrapColumn": 80
 }

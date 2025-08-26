@@ -22,3 +22,4 @@ export {
   DepartmentLimitsResponseDto,
   DepartmentStatisticsResponseDto,
 } from './department-response.dto';
+export { PaginatedResponseDto } from './paginated-response.dto';
