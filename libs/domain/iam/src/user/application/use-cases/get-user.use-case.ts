@@ -1,15 +1,7 @@
 import { Injectable } from '@nestjs/common';
-import { IUseCase } from '@aiofix/domain-shared';
+import { IUseCase, IQueryBus } from '@aiofix/domain-shared';
 import { UserResponseDto } from '../dtos/user-response.dto';
 import { GetUserQuery } from '../queries/get-user.query';
-
-/**
- * @interface IQueryBus
- * @description 查询总线接口
- */
-export interface IQueryBus {
-  execute<TQuery, TResult>(query: TQuery): Promise<TResult>;
-}
 
 /**
  * @class GetUserUseCase

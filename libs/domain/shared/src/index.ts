@@ -27,13 +27,15 @@ export * from './domain/repositories/base-repository.interface';
 // 导出事件处理器
 export * from './domain/event-handlers';
 
+// 导出事件总线
+export * from './application/events';
+
 // 导出应用层接口
-export * from './application/interfaces/use-case.interface';
-export * from './application/interfaces/command.interface';
-export * from './application/interfaces/query.interface';
-export * from './application/interfaces/command-handler.interface';
-export * from './application/interfaces/query-handler.interface';
+export * from './application/interfaces';
 
 // 导出应用层基础类
 export * from './application/base/base-command';
 export * from './application/base/base-query';
+
+// 导出CQRS模块
+export * from './application/cqrs';

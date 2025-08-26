@@ -5,24 +5,9 @@ import { User } from '../../../domain/entities/user.entity';
 import { Username } from '../../../domain/value-objects/username.vo';
 import { Email } from '../../../domain/value-objects/email.vo';
 import { Password } from '../../../domain/value-objects/password.vo';
-import { Uuid } from '@aiofix/domain-shared';
-import { UserCreatedEvent } from '../../../domain/events/user-created.event';
-
-/**
- * @interface ICommandHandler
- * @description 命令处理器接口
- */
-export interface ICommandHandler<TCommand> {
-  execute(command: TCommand): Promise<any>;
-}
-
-/**
- * @interface IEventBus
- * @description 事件总线接口
- */
-export interface IEventBus {
-  publish(event: any): void;
-}
+import { Uuid, ICommandHandler } from '@aiofix/domain-shared';
+import { DomainEventBus } from '@aiofix/domain-shared';
+// import { UserCreatedEvent } from '../../../domain/events/user-created.event';
 
 /**
  * @class CreateUserHandler
@@ -43,7 +28,9 @@ export interface IEventBus {
  * 5. 返回创建结果
  */
 @Injectable()
-export class CreateUserHandler implements ICommandHandler<CreateUserCommand> {
+export class CreateUserHandler
+  implements ICommandHandler<CreateUserCommand, string>
+{
   /**
    * @constructor
    * @description 构造函数
@@ -52,7 +39,7 @@ export class CreateUserHandler implements ICommandHandler<CreateUserCommand> {
    */
   constructor(
     private readonly userRepository: UserRepository,
-    private readonly eventBus: IEventBus,
+    private readonly eventBus: DomainEventBus,
   ) {}
 
   /**
@@ -106,8 +93,9 @@ export class CreateUserHandler implements ICommandHandler<CreateUserCommand> {
     await this.userRepository.save(user);
 
     // 7. 发布用户创建事件
-    const userCreatedEvent = new UserCreatedEvent(user);
-    this.eventBus.publish(userCreatedEvent);
+    // TODO: 暂时注释，等待CQRS架构完整实现
+    // const userCreatedEvent = new UserCreatedEvent(user);
+    // await this.eventBus.publish(userCreatedEvent);
 
     return userId.value;
   }

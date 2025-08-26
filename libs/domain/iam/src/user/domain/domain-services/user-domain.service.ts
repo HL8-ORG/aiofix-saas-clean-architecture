@@ -394,6 +394,7 @@ export class UserDomainService {
       ],
       [UserStatus.LOCKED]: [UserStatus.ACTIVE, UserStatus.DISABLED],
       [UserStatus.DISABLED]: [UserStatus.ACTIVE],
+      [UserStatus.DELETED]: [], // 已删除状态不允许转换
     };
 
     const allowedTransitions = validTransitions[oldStatus] || [];

@@ -134,7 +134,7 @@ export class UserController {
   ): Promise<UserResponseDto> {
     const input: UpdateUserInput = {
       userId: id,
-      updateData: updateUserDto,
+      data: updateUserDto,
     };
     return this.updateUserUseCase.execute(input);
   }

@@ -24,22 +24,26 @@
   "author": "Aiofix Team",
   "license": "MIT",
   "devDependencies": {
-     "@eslint/eslintrc": "^3.3.1",
+    "@eslint/eslintrc": "^3.3.1",
     "@eslint/js": "^9.34.0",
-    "eslint-config-prettier": "^10.1.8",
-    "eslint-plugin-prettier": "^5.5.4",
-    "typescript-eslint": "^8.39.1",
-    "globals": "^16.3.0",
+    "@nestjs/testing": "^11.1.6",
     "@swc/cli": "^0.7.8",
     "@swc/core": "^1.13.4",
     "@types/jest": "^30.0.0",
     "@types/node": "^24.3.0",
     "eslint": "^9.34.0",
+    "eslint-config-prettier": "^10.1.8",
+    "eslint-plugin-prettier": "^5.5.4",
+    "globals": "^16.3.0",
     "jest": "^30.0.5",
-    "typescript": "5.9.2"
+    "typescript": "5.9.2",
+    "typescript-eslint": "^8.39.1"
   },
   "files": [
     "dist",
     "README.md"
-  ]
+  ],
+  "dependencies": {
+    "@nestjs/common": "^11.1.6"
+  }
 }

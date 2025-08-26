@@ -35,6 +35,7 @@ export enum UserStatus {
   SUSPENDED = 'suspended', // 暂停
   LOCKED = 'locked', // 锁定
   DISABLED = 'disabled', // 禁用
+  DELETED = 'deleted', // 已删除
 }
 
 /**
@@ -357,6 +358,14 @@ export class User extends BaseEntity {
    */
   disable(): void {
     this._status = UserStatus.DISABLED;
+  }
+
+  /**
+   * @method deactivate
+   * @description 软删除用户（停用）
+   */
+  deactivate(): void {
+    this._status = UserStatus.DELETED;
   }
 
   /**

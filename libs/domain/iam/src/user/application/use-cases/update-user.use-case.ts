@@ -1,34 +1,9 @@
 import { Injectable } from '@nestjs/common';
-import { IUseCase } from '@aiofix/domain-shared';
+import { IUseCase, ICommandBus, IQueryBus } from '@aiofix/domain-shared';
 import { UpdateUserDto } from '../dtos/update-user.dto';
 import { UserResponseDto } from '../dtos/user-response.dto';
 import { UpdateUserCommand } from '../commands/update-user.command';
 import { GetUserQuery } from '../queries/get-user.query';
-
-/**
- * @interface ICommandBus
- * @description 命令总线接口
- */
-export interface ICommandBus {
-  execute<TCommand, TResult>(command: TCommand): Promise<TResult>;
-}
-
-/**
- * @interface IQueryBus
- * @description 查询总线接口
- */
-export interface IQueryBus {
-  execute<TQuery, TResult>(query: TQuery): Promise<TResult>;
-}
-
-/**
- * @interface UpdateUserInput
- * @description 更新用户输入接口
- */
-export interface UpdateUserInput {
-  userId: string;
-  updateData: UpdateUserDto;
-}
 
 /**
  * @class UpdateUserUseCase
@@ -69,13 +44,31 @@ export class UpdateUserUseCase
    */
   async execute(input: UpdateUserInput): Promise<UserResponseDto> {
     // 1. 创建命令
-    const command = new UpdateUserCommand(input.userId, input.updateData);
+    const command = new UpdateUserCommand(
+      input.userId,
+      input.data,
+      undefined, // commandUserId - 可以从上下文获取
+      undefined, // tenantId - 可以从上下文获取
+    );
 
     // 2. 执行命令
-    await this.commandBus.execute(command);
+    await this.commandBus.execute<UpdateUserCommand, void>(command);
 
     // 3. 查询结果
-    const query = new GetUserQuery(input.userId);
-    return this.queryBus.execute(query);
+    const query = new GetUserQuery(
+      input.userId,
+      undefined, // queryUserId - 可以从上下文获取
+      undefined, // tenantId - 可以从上下文获取
+    );
+    return this.queryBus.execute<GetUserQuery, UserResponseDto>(query);
   }
+}
+
+/**
+ * @interface UpdateUserInput
+ * @description 更新用户输入接口
+ */
+export interface UpdateUserInput {
+  userId: string;
+  data: UpdateUserDto;
 }

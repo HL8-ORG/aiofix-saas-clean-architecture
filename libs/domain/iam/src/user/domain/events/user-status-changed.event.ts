@@ -229,6 +229,7 @@ export class UserStatusChangedEvent extends BaseEvent {
       [UserStatus.SUSPENDED]: 2,
       [UserStatus.PENDING]: 3,
       [UserStatus.ACTIVE]: 4,
+      [UserStatus.DELETED]: -1, // 已删除状态为最低级别
     };
 
     const oldLevel = statusHierarchy[this.eventData.oldStatus] || 0;

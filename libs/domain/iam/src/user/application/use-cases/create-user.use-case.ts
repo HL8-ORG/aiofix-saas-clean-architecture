@@ -1,25 +1,9 @@
 import { Injectable } from '@nestjs/common';
-import { IUseCase } from '@aiofix/domain-shared';
+import { IUseCase, ICommandBus, IQueryBus } from '@aiofix/domain-shared';
 import { CreateUserDto } from '../dtos/create-user.dto';
 import { UserResponseDto } from '../dtos/user-response.dto';
 import { CreateUserCommand } from '../commands/create-user.command';
 import { GetUserQuery } from '../queries/get-user.query';
-
-/**
- * @interface ICommandBus
- * @description 命令总线接口
- */
-export interface ICommandBus {
-  execute<TCommand, TResult>(command: TCommand): Promise<TResult>;
-}
-
-/**
- * @interface IQueryBus
- * @description 查询总线接口
- */
-export interface IQueryBus {
-  execute<TQuery, TResult>(query: TQuery): Promise<TResult>;
-}
 
 /**
  * @class CreateUserUseCase
@@ -62,14 +46,13 @@ export class CreateUserUseCase
     // 1. 创建命令
     const command = new CreateUserCommand(input);
 
-    // 2. 执行命令
-    await this.commandBus.execute(command);
+    // 2. 执行命令并获取用户ID
+    const userId = await this.commandBus.execute<CreateUserCommand, string>(
+      command,
+    );
 
     // 3. 查询结果
-    // 注意：这里需要从命令执行结果中获取用户ID
-    // 暂时使用一个占位符，实际实现时需要从命令处理器返回用户ID
-    const userId = 'temp-user-id'; // TODO: 从命令执行结果获取
     const query = new GetUserQuery(userId);
-    return this.queryBus.execute(query);
+    return this.queryBus.execute<GetUserQuery, UserResponseDto>(query);
   }
 }

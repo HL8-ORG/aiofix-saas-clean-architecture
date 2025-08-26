@@ -50,7 +50,18 @@ export class GetUsersUseCase
     input: GetUsersDto,
   ): Promise<PaginatedResponseDto<UserResponseDto>> {
     // 1. 创建查询
-    const query = new GetUsersQuery(input);
+    const query = new GetUsersQuery(
+      input.page,
+      input.limit,
+      undefined, // tenantId - not available in DTO
+      input.organizationId,
+      input.departmentId,
+      input.status,
+      undefined, // type - not available in DTO
+      input.search,
+      input.sortBy,
+      input.sortOrder,
+    );
 
     // 2. 执行查询
     return this.queryBus.execute(query);

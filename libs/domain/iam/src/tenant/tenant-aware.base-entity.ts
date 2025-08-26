@@ -1,3 +1,7 @@
+import { BaseEntity } from '@aiofix/domain-shared';
+import { Uuid } from '@aiofix/domain-shared';
+import { TenantAccessDeniedError } from './exceptions/tenant-access-denied.error';
+
 /**
  * @class TenantAwareEntity
  * @description 支持多租户隔离的实体基类
@@ -9,7 +13,7 @@ export abstract class TenantAwareEntity extends BaseEntity {
     public readonly tenantId: Uuid,
     id?: Uuid,
   ) {
-    super(id);
+    super(id || Uuid.generate());
   }
 
   /**
@@ -21,7 +25,7 @@ export abstract class TenantAwareEntity extends BaseEntity {
   protected assertSameTenant(other: TenantAwareEntity): void {
     if (!this.tenantId.equals(other.tenantId)) {
       throw new TenantAccessDeniedError(
-        `操作禁止: 实体属于租户${this.tenantId}，目标属于${other.tenantId}`,
+        `操作禁止: 实体属于租户${this.tenantId.toString()}，目标属于${other.tenantId.toString()}`,
       );
     }
   }

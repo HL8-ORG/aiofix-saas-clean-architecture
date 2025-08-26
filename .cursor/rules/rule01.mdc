@@ -7,9 +7,13 @@ alwaysApply: true
 - 你是一个全栈工程师，精通TypeScript语言，有丰富的node.js开发经验。
 - 我是一名中国软件工程师，所以，请你使用中文回答我的问题。
 - 你在编写代码时，应当按照TSDoc规范添加注释，并写入代码的原理与机制，或功能与业务规则。示例：
+
 ```ts
 import { NestFactory } from '@nestjs/core';
-import { FastifyAdapter, NestFastifyApplication } from '@nestjs/platform-fastify';
+import {
+  FastifyAdapter,
+  NestFastifyApplication,
+} from '@nestjs/platform-fastify';
 import { AppModule } from './app.module';
 
 /**
@@ -17,14 +21,14 @@ import { AppModule } from './app.module';
  * @description
  * 启动NestJS应用的主函数。该函数负责创建基于Fastify平台的应用实例，
  * 并监听指定端口启动高性能HTTP服务。
- * 
+ *
  * 主要原理与机制如下：
  * 1. 通过NestFactory.create创建应用实例，使用FastifyAdapter作为HTTP适配器，
  *    Fastify是一个高性能的Node.js web框架，相比Express具有更好的性能表现。
  * 2. FastifyAdapter提供了Fastify与NestJS的集成，使得NestJS可以充分利用
  *    Fastify的高性能特性，如更快的路由匹配、更低的延迟等。
  * 3. 最后通过listen方法监听环境变量PORT指定的端口（默认3000），启动HTTP服务。
- * 
+ *
  * 功能与业务规则：
  * 1. 启动应用服务器
  * 2、其他
@@ -34,7 +38,7 @@ async function bootstrap() {
   // 创建基于Fastify的Nest应用实例
   const app = await NestFactory.create<NestFastifyApplication>(
     AppModule,
-    new FastifyAdapter()
+    new FastifyAdapter(),
   );
 
   // 启动HTTP服务，监听指定端口
@@ -43,27 +47,62 @@ async function bootstrap() {
 
 // 启动应用
 bootstrap();
-
 ```
 
 - 修改代码时应当同时修改相应的注释，确保代码与注释一致。
-- 你需要了解本系统的业务需求，请阅读业务需求文档iam-business-requirements.md
+- 创建文件的时候，优先采用分段创建文件的策略，避免工具调用超时。
+- 你应当使用`pnpm`作为包管理器。
+- **完成代码编写后应当进行代码`linter`检查，及时修复报错**。
+- **开发任务完成后应当进行编译检查，及时处理报错**。
+
+- 本系统自定义了`Logger`,集成了`Pino`，以`PinoLoggerService`对外提供日志服务。你应该优先使用这个自定义的日志服务，而不是`NestJS`内置的日志服务。
+- 本系统全局统一使用`uuid v4`。
+
+- 你需要了解本系统的开发需求。
 
 ```ts
 read_file({
-  target_file: "docs/business-requirements/iam-business-requirements.md",
-  should_read_entire_file: true
-})
+  target_file: 'docs/ai-prompts/README.md',
+  should_read_entire_file: true,
+});
 ```
+
+- 领域层开发时你应当阅读以下指南：
+
+```ts
+read_file({
+  target_file: 'docs/development/06-domain-layer-development-guide.md',
+  should_read_entire_file: true,
+});
+```
+
 - 应用层开发时你应当阅读以下指南：
 
 ```ts
 read_file({
-  target_file: "docs/architecture/development/06-iam-application-layer-guide.md",
-  should_read_entire_file: true
-})
+  target_file: 'docs/development/07-application-layer-development-guide.md',
+  should_read_entire_file: true,
+});
 ```
-- 你应当使用`pnpm`作为包管理器。
-- 创建文件的时候，优先采用分段创建文件的策略，避免工具调用超时。
-- 本系统全局统一使用`uuid v4`。
-- 本系统自定义了`Logger`,集成了`Pino`，以`PinoLoggerService`对外提供日志服务。你应该优先使用这个自定义的日志服务，而不是`NestJS`内置的日志服务。
+
+- 表现层开发时你应当阅读以下指南：
+
+```ts
+read_file({
+  target_file: 'docs/development/09-presentation-layer-development-guide.md',
+  should_read_entire_file: true,
+});
+```
+
+- 基础设施层开发时你应当阅读以下指南：
+
+```ts
+read_file({
+  target_file: 'docs/development/08-infrastructure-layer-development-guide.md',
+  should_read_entire_file: true,
+});
+```
+
+- iam领域模块内不设置共享领域层，因为我们把共享领域作为一个独立的模块开发，各模块的共享领域层组件统一放置`@aiofix/domain-shared`子项目，代码在`libs/domain/shared`
+
+- 测试文件统一放在项目的`src/__tests__`目录下集中管理。

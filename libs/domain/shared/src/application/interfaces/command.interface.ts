@@ -4,15 +4,15 @@
  *
  * 主要原理与机制：
  * 1. 定义了命令的统一接口规范，确保所有命令都遵循相同的契约
- * 2. 命令代表系统中的写操作，用于改变系统状态
- * 3. 每个命令都有唯一的标识符和时间戳
- * 4. 支持用户和租户上下文信息，用于审计和权限控制
+ * 2. 命令代表一个意图，用于改变系统状态
+ * 3. 命令是不可变的，一旦创建就不能修改
+ * 4. 命令包含执行所需的所有数据
  *
  * 功能与业务规则：
- * 1. 提供统一的命令执行入口
- * 2. 支持命令的审计追踪
- * 3. 支持多租户数据隔离
- * 4. 支持命令的幂等性处理
+ * 1. 提供统一的命令标识
+ * 2. 支持命令的元数据管理
+ * 3. 支持命令的版本控制
+ * 4. 支持命令的审计和追踪
  */
 export interface ICommand {
   /**
@@ -28,14 +28,14 @@ export interface ICommand {
   readonly timestamp: Date;
 
   /**
-   * @property userId
-   * @description 执行命令的用户ID
+   * @property correlationId
+   * @description 关联ID，用于追踪业务流程
    */
-  readonly userId?: string;
+  readonly correlationId?: string;
 
   /**
-   * @property tenantId
-   * @description 命令所属的租户ID
+   * @property causationId
+   * @description 因果ID，用于追踪事件链
    */
-  readonly tenantId?: string;
+  readonly causationId?: string;
 }

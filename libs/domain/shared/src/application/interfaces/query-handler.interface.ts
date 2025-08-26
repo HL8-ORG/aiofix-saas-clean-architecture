@@ -16,7 +16,7 @@ import { IQuery } from './query.interface';
  * 3. 支持查询的权限验证
  * 4. 支持查询结果的缓存优化
  */
-export interface IQueryHandler<TQuery extends IQuery, TResult> {
+export interface IQueryHandler<TQuery extends IQuery<TResult>, TResult> {
   /**
    * @method execute
    * @description 执行查询

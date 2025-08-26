@@ -1,21 +1,20 @@
 import { BaseQuery } from '@aiofix/domain-shared';
-import { GetUsersDto, SortOrder } from '../dtos/get-users.dto';
 
 /**
  * @class GetUsersQuery
- * @description 获取用户列表查询，定义获取用户列表的操作
+ * @description 获取用户列表查询，定义获取用户列表的查询参数
  *
  * 主要原理与机制：
- * 1. 继承BaseQuery，获得查询的基础功能
- * 2. 包含获取用户列表所需的参数
- * 3. 作为CQRS模式中的读操作查询
- * 4. 支持用户和租户上下文信息
+ * 1. 作为CQRS查询模式的查询对象
+ * 2. 包含分页、过滤、排序等查询参数
+ * 3. 支持多租户数据隔离
+ * 4. 提供灵活的查询条件组合
  *
  * 功能与业务规则：
- * 1. 定义获取用户列表的业务操作
- * 2. 支持分页、排序、过滤等功能
- * 3. 包含用户的完整信息
- * 4. 支持权限验证和数据隔离
+ * 1. 支持分页查询
+ * 2. 支持多条件过滤
+ * 3. 支持排序
+ * 4. 支持搜索
  */
 export class GetUsersQuery extends BaseQuery {
   /**
@@ -31,64 +30,89 @@ export class GetUsersQuery extends BaseQuery {
   readonly limit: number;
 
   /**
+   * @property tenantId
+   * @description 租户ID
+   */
+  readonly tenantId?: string;
+
+  /**
+   * @property organizationId
+   * @description 组织ID
+   */
+  readonly organizationId?: string;
+
+  /**
+   * @property departmentId
+   * @description 部门ID
+   */
+  readonly departmentId?: string;
+
+  /**
+   * @property status
+   * @description 用户状态
+   */
+  readonly status?: string;
+
+  /**
+   * @property type
+   * @description 用户类型
+   */
+  readonly type?: string;
+
+  /**
    * @property search
    * @description 搜索关键词
    */
   readonly search?: string;
 
   /**
-   * @property status
-   * @description 用户状态过滤
-   */
-  readonly status?: string;
-
-  /**
-   * @property organizationId
-   * @description 组织ID过滤
-   */
-  readonly organizationId?: string;
-
-  /**
-   * @property departmentId
-   * @description 部门ID过滤
-   */
-  readonly departmentId?: string;
-
-  /**
-   * @property roleId
-   * @description 角色ID过滤
-   */
-  readonly roleId?: string;
-
-  /**
    * @property sortBy
    * @description 排序字段
    */
-  readonly sortBy: string;
+  readonly sortBy?: string;
 
   /**
    * @property sortOrder
-   * @description 排序顺序
+   * @description 排序方向
    */
-  readonly sortOrder: SortOrder;
+  readonly sortOrder?: 'ASC' | 'DESC';
 
   /**
    * @constructor
    * @description 构造函数
-   * @param dto 获取用户列表DTO
-   * @param queryUserId 执行查询的用户ID
-   * @param tenantId 查询所属的租户ID
+   * @param page 页码
+   * @param limit 每页数量
+   * @param tenantId 租户ID
+   * @param organizationId 组织ID
+   * @param departmentId 部门ID
+   * @param status 用户状态
+   * @param type 用户类型
+   * @param search 搜索关键词
+   * @param sortBy 排序字段
+   * @param sortOrder 排序方向
    */
-  constructor(dto: GetUsersDto, queryUserId?: string, tenantId?: string) {
-    super(queryUserId, tenantId);
-    this.page = dto.page || 1;
-    this.limit = dto.limit || 10;
-    this.search = dto.search;
-    this.status = dto.status;
-    this.organizationId = dto.organizationId;
-    this.departmentId = dto.departmentId;
-    this.roleId = dto.roleId;
-    this.sortBy = dto.sortBy || 'createdAt';
-    this.sortOrder = dto.sortOrder || SortOrder.DESC;
+  constructor(
+    page: number = 1,
+    limit: number = 10,
+    tenantId?: string,
+    organizationId?: string,
+    departmentId?: string,
+    status?: string,
+    type?: string,
+    search?: string,
+    sortBy?: string,
+    sortOrder: 'ASC' | 'DESC' = 'DESC',
+  ) {
+    super();
+    this.page = page;
+    this.limit = limit;
+    this.tenantId = tenantId;
+    this.organizationId = organizationId;
+    this.departmentId = departmentId;
+    this.status = status;
+    this.type = type;
+    this.search = search;
+    this.sortBy = sortBy;
+    this.sortOrder = sortOrder;
   }
 }
