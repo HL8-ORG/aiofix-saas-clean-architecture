@@ -7,6 +7,7 @@
 ## 🏗️ 项目架构
 
 ### 分层架构
+
 ```
 ┌─────────────────────────────────────────────────────────────┐
 │                    Presentation Layer                       │
@@ -24,6 +25,7 @@
 ```
 
 ### 目录结构
+
 ```
 src/
 ├── app/                    # 应用入口层
@@ -45,23 +47,27 @@ src/
 ## 🚀 快速开始
 
 ### 环境要求
+
 - Node.js 18.x/20.x LTS
 - PostgreSQL 15.x/16.x
 - MongoDB 6.x/7.x
 - Redis 7.x
 
 ### 安装依赖
+
 ```bash
 npm install
 ```
 
 ### 环境配置
+
 ```bash
 cp .env.example .env
 # 编辑 .env 文件，配置数据库连接等信息
 ```
 
 ### 启动开发服务器
+
 ```bash
 npm run start:dev
 ```
@@ -71,6 +77,7 @@ npm run start:dev
 ### ✅ 已完成任务
 
 #### 第一部分：核心基础设施
+
 - [x] **任务1.1：项目结构创建** ✅ **已完成**
   - 创建了完整的DDD分层目录结构
   - 配置了IAM领域和共享模块
@@ -92,6 +99,7 @@ npm run start:dev
 ### 🔄 进行中任务
 
 #### 第一部分：核心基础设施
+
 - [ ] **任务2：数据库设计和迁移**
   - [ ] PostgreSQL数据库设计
   - [ ] MongoDB事件存储设计
@@ -110,6 +118,7 @@ npm run start:dev
 ### 📋 待开始任务
 
 #### 第二部分：领域层开发
+
 - [ ] 共享域实现
 - [ ] 租户域实现
 - [ ] 用户域实现
@@ -121,22 +130,26 @@ npm run start:dev
 ## 🛠️ 技术栈
 
 ### 核心框架
+
 - **NestJS 11.x** - 企业级Node.js框架
 - **TypeScript 5.x** - 类型安全的JavaScript超集
 - **Fastify** - 高性能HTTP服务器
 
 ### 数据库
+
 - **PostgreSQL** - 主数据库
 - **MongoDB** - 事件存储
 - **Redis** - 缓存和会话存储
 - **MikroORM** - TypeScript ORM
 
 ### 认证授权
+
 - **Passport.js** - 身份验证中间件
 - **JWT** - JSON Web Token
 - **CASL** - 权限管理
 
 ### 架构模式
+
 - **DDD** - 领域驱动设计
 - **Clean Architecture** - 整洁架构
 - **CQRS** - 命令查询职责分离

@@ -1,4 +1,6 @@
 packages:
   - "apps/*"
+  - "libs/infrastructure/*"
+  - "libs/domain/*"
   - "!packages/*"
   - "tools/*"

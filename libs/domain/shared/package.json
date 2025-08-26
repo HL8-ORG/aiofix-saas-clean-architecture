@@ -1,0 +1,45 @@
+{
+  "name": "@aiofix/domain-shared",
+  "version": "1.0.0",
+  "description": "Aiofix Shared Domain Layer - Common domain objects following DDD and Clean Architecture principles",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "scripts": {
+    "build": "swc src -d dist && tsc --emitDeclarationOnly --outDir dist",
+    "dev": "swc src -d dist --watch",
+    "clean": "rm -rf dist",
+    "test": "jest",
+    "test:watch": "jest --watch",
+    "lint": "eslint src --ext .ts",
+    "lint:fix": "eslint src --ext .ts --fix"
+  },
+  "keywords": [
+    "domain",
+    "shared",
+    "ddd",
+    "clean-architecture",
+    "entities",
+    "value-objects"
+  ],
+  "author": "Aiofix Team",
+  "license": "MIT",
+  "devDependencies": {
+     "@eslint/eslintrc": "^3.3.1",
+    "@eslint/js": "^9.34.0",
+    "eslint-config-prettier": "^10.1.8",
+    "eslint-plugin-prettier": "^5.5.4",
+    "typescript-eslint": "^8.39.1",
+    "globals": "^16.3.0",
+    "@swc/cli": "^0.7.8",
+    "@swc/core": "^1.13.4",
+    "@types/jest": "^30.0.0",
+    "@types/node": "^24.3.0",
+    "eslint": "^9.34.0",
+    "jest": "^30.0.5",
+    "typescript": "5.9.2"
+  },
+  "files": [
+    "dist",
+    "README.md"
+  ]
+}

@@ -3,12 +3,14 @@
 ## ✅ 已完成的工作
 
 ### 1. 基础文件创建
+
 - ✅ `main.ts` - 应用入口文件，配置Fastify适配器
 - ✅ `app.module.ts` - 根模块，导入配置和基础模块
 - ✅ `app.controller.ts` - 根控制器，提供健康检查和基础API
 - ✅ `app.service.ts` - 根服务，提供基础业务逻辑
 
 ### 2. 目录结构创建
+
 - ✅ **共享模块** (`shared/`) - 跨模块使用的通用功能
 - ✅ **IAM模块** (`iam/`) - 身份认证与访问管理
 - ✅ **通知模块** (`notification/`) - 多渠道通知服务
@@ -23,9 +25,11 @@
 - ✅ **LLM管理模块** (`llm-management/`) - 大语言模型管理
 
 ### 3. 分层架构实现
+
 每个模块都按照Clean Architecture和DDD原则创建了完整的分层结构：
 
 #### 领域层 (Domain Layer)
+
 - `entities/` - 实体
 - `value-objects/` - 值对象
 - `events/` - 领域事件
@@ -33,6 +37,7 @@
 - `repositories/` - 仓储接口
 
 #### 应用层 (Application Layer)
+
 - `use-cases/` - 用例
 - `commands/` - 命令
 - `queries/` - 查询
@@ -41,6 +46,7 @@
 - `services/` - 应用服务
 
 #### 基础设施层 (Infrastructure Layer)
+
 - `repositories/` - 仓储实现
 - `database/` - 数据库相关
 - `external/` - 外部服务
@@ -49,28 +55,33 @@
 - `security/` - 安全相关（通知模块）
 
 #### 表现层 (Presentation Layer)
+
 - `controllers/` - 控制器
 - `middlewares/` - 中间件
 - `guards/` - 守卫
 
 ### 4. 模块文件创建
+
 - ✅ `shared/shared.module.ts` - 共享模块定义
 - ✅ `iam/iam.module.ts` - IAM模块定义
 - ✅ `src/README.md` - 项目结构说明文档
 
 ### 5. 项目配置
+
 - ✅ 更新 `app.module.ts` 导入基础模块
 - ✅ 项目构建测试通过
 
 ## 📊 目录统计
 
 ### 总目录数
+
 ```
 $ find src -type d | wc -l
 > 约 200+ 个目录
 ```
 
 ### 主要模块目录结构
+
 - **IAM模块**: 8个子领域 × 4层 × 5-6个子目录 = 约160个目录
 - **通知模块**: 5个子领域 × 4层 × 5-6个子目录 = 约100个目录
 - **其他模块**: 8个模块 × 4层 × 5个子目录 = 约160个目录
@@ -79,21 +90,25 @@ $ find src -type d | wc -l
 ## 🏗️ 架构特点
 
 ### 1. DDD设计
+
 - ✅ 按业务领域组织代码
 - ✅ 清晰的限界上下文
 - ✅ 领域驱动的命名规范
 
 ### 2. Clean Architecture
+
 - ✅ 清晰的分层架构
 - ✅ 依赖倒置原则
 - ✅ 模块间低耦合
 
 ### 3. CQRS支持
+
 - ✅ 命令和查询分离
 - ✅ 独立的处理器结构
 - ✅ 事件驱动架构准备
 
 ### 4. 微服务就绪
+
 - ✅ 模块化设计
 - ✅ 清晰的模块边界
 - ✅ 标准化的接口设计
@@ -101,6 +116,7 @@ $ find src -type d | wc -l
 ## 🚀 下一步工作
 
 ### 第一阶段：基础设施搭建
+
 1. **共享模块实现**
    - [ ] 基础实体和值对象
    - [ ] 共享服务接口
@@ -117,6 +133,7 @@ $ find src -type d | wc -l
    - [ ] 缓存装饰器
 
 ### 第二阶段：核心领域开发
+
 1. **IAM模块实现**
    - [ ] 租户管理
    - [ ] 用户管理
@@ -135,6 +152,7 @@ $ find src -type d | wc -l
    - [ ] 读写分离
 
 ### 第三阶段：业务功能开发
+
 1. **通知系统**
    - [ ] 邮件通知
    - [ ] 短信通知
@@ -149,6 +167,7 @@ $ find src -type d | wc -l
 ## 📋 开发规范
 
 ### 文件命名规范
+
 - **实体**: `{entity-name}.entity.ts`
 - **值对象**: `{value-object-name}.vo.ts`
 - **事件**: `{event-name}.event.ts`
@@ -158,6 +177,7 @@ $ find src -type d | wc -l
 - **控制器**: `{controller-name}.controller.ts`
 
 ### 类命名规范
+
 - **实体**: `{EntityName}`
 - **值对象**: `{ValueObjectName}`
 - **事件**: `{EventName}Event`
@@ -167,6 +187,7 @@ $ find src -type d | wc -l
 - **控制器**: `{ControllerName}Controller`
 
 ### 导入路径规范
+
 - 使用相对路径导入
 - 避免使用 `../../` 过深的相对路径
 - 优先使用模块内的相对导入

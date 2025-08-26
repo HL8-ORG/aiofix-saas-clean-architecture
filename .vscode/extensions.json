@@ -2,6 +2,19 @@
   "recommendations": [
     "imgildev.vscode-auto-barrel",
     "unifiedjs.vscode-mdx",
-    "jmkrivocapich.drawfolderstructure"
+    "jmkrivocapich.drawfolderstructure",
+    "esbenp.prettier-vscode",
+    "dbaeumer.vscode-eslint",
+    "ms-vscode.vscode-typescript-next",
+    "bradlc.vscode-tailwindcss",
+    "formulahendry.auto-rename-tag",
+    "christian-kohler.path-intellisense",
+    "ms-vscode.vscode-json",
+    "redhat.vscode-yaml",
+    "ms-vscode.vscode-markdown",
+    "ms-vscode.vscode-docker",
+    "ms-azuretools.vscode-docker",
+    "ms-vscode-remote.remote-wsl",
+    "ms-vscode-remote.remote-containers"
   ]
 }

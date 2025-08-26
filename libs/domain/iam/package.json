@@ -1,0 +1,55 @@
+{
+  "name": "@aiofix/domain-iam",
+  "version": "1.0.0",
+  "description": "IAM领域模块 - 包含租户、用户、组织、角色、权限、认证等子领域",
+  "main": "dist/src/index.js",
+  "typings": "dist/src/index.d.ts",
+  "scripts": {
+    "build": "swc src -d dist && tsc --emitDeclarationOnly --outDir dist",
+    "dev": "swc src -d dist --watch",
+    "clean": "rm -rf dist",
+    "test": "jest",
+    "test:watch": "jest --watch",
+    "test:coverage": "jest --coverage",
+    "test:verbose": "jest --verbose",
+    "test:debug": "jest --detectOpenHandles --forceExit",
+    "test:update": "jest --updateSnapshot",
+    "lint": "eslint src --ext .ts",
+    "lint:fix": "eslint src --ext .ts --fix"
+  },
+  "dependencies": {
+    "@aiofix/domain-shared": "workspace:*",
+    "@nestjs/common": "^11.1.6",
+    "@nestjs/cqrs": "^11.0.3",
+    "@nestjs/swagger": "^11.2.0",
+    "class-validator": "^0.14.2"
+  },
+  "devDependencies": {
+    "@eslint/eslintrc": "^3.3.1",
+    "@eslint/js": "^9.34.0",
+    "@swc/cli": "^0.7.8",
+    "@swc/core": "^1.13.4",
+    "@types/jest": "^30.0.0",
+    "@types/node": "^24.3.0",
+    "eslint": "^9.34.0",
+    "eslint-config-prettier": "^10.1.8",
+    "eslint-plugin-prettier": "^5.5.4",
+    "globals": "^16.3.0",
+    "jest": "^30.0.5",
+    "typescript": "5.9.2",
+    "typescript-eslint": "^8.39.1"
+  },
+  "keywords": [
+    "domain",
+    "iam",
+    "tenant",
+    "user",
+    "organization",
+    "role",
+    "permission",
+    "auth",
+    "ddd"
+  ],
+  "author": "Aiofix Team",
+  "license": "MIT"
+}
